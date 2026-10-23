@@ -12,16 +12,16 @@ cp -avf "/ctx/system_files"/. /
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
+ln -s /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt
+
 # this installs a package from fedora repos
-dnf5 install -y tmux
 
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
+yum -q makecache -y --disablerepo='*' --enablerepo='crowdsec_crowdsec'
 
-#### Example for enabling a System Unit File
+dnf5 -y  --setopt=install_weak_deps=False install \
+  crowdsec-firewall-bouncer-nftables \
+  nebula \
+  micro
+dnf5 clean all
 
-systemctl enable podman.socket
+rm -rf /var/lib/dnf

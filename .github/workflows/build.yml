@@ -78,7 +78,7 @@ jobs:
       - name: Rechunk with rpm-ostree
         id: rechunk
         run: |
-          just ostree-rechunk \
+          just rechunk \
             ${IMAGE_NAME} \
             ${DEFAULT_TAG}
 
