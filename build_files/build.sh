@@ -21,7 +21,8 @@ yum -q makecache -y --disablerepo='*' --enablerepo='crowdsec_crowdsec'
 dnf5 -y  --setopt=install_weak_deps=False install \
   crowdsec-firewall-bouncer-nftables \
   nebula \
-  micro
+  tailscale \
+  micro 
 dnf5 clean all
 
 rm -rf /var/lib/dnf
